@@ -1,0 +1,273 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@import "lightVars";
+@import "darkVars";
+
+@mixin aHover {
+  color: $secondary-font-color;
+  border-bottom: 3px solid $secondary-font-color;
+}
+
+@mixin btnHover($color) {
+  &:hover,
+  :active {
+    background-color: $primary-bcg-color;
+    color: $color;
+  }
+}
+
+@mixin trans($prop: all) {
+  transition: $prop 0.3s ease-in-out;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: $font;
+}
+
+// .scroller {
+//     width: 300px;
+//     height: 100px;
+//     overflow-y: scroll;
+//     scrollbar-color: rebeccapurple green;
+//     scrollbar-width: thin;
+//  }
+// body:hover {overflow:auto;}
+
+body {
+  overflow: hidden;
+}
+
+.main {
+  width: 100vw;
+  height: 90vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-color: $secondary-font-color $header-bcg-color;
+  scrollbar-width: thin;
+  -webkit-scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+  &::-webkit-scrollbar-track {
+    background: $header-bcg-color;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $secondary-font-color;
+    border-radius: 10px;
+    border: 3px solid $header-bcg-color;
+  }
+}
+
+.header {
+  width: 100vw;
+  height: $header-height;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: $header-bcg-color;
+
+  * {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  h1 {
+    color: $font-color;
+    font-size: 1.5rem;
+    @include trans();
+
+    span {
+      color: $secondary-font-color;
+      font-size: 1.5rem;
+    }
+
+    &:hover,
+    :active {
+      color: $secondary-font-color;
+      text-shadow: 0 0 25px $secondary-font-color;
+      cursor: pointer;
+    }
+  }
+
+  button {
+    height: 40px;
+    border-radius: 5px;
+    background-color: $font-color;
+    color: $third-font-color;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    @include trans();
+
+    &:hover {
+      background-color: $secondary-font-color;
+      color: $primary-bcg-color;
+      box-shadow: 0 0 25px $secondary-font-color;
+    }
+
+    &:active {
+      background-color: $secondary-font-color;
+      color: $primary-bcg-color;
+      box-shadow: 0 0 25px $secondary-font-color;
+    }
+  }
+
+  .toggle {
+    width: 40px;
+    display: none;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    div {
+      border: 1px solid $third-font-color;
+      background-color: $third-font-color;
+      width: 20px;
+      height: 1px;
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+  }
+
+  a {
+    text-decoration: none;
+    color: $font-color;
+    padding: 5px 0;
+    @include trans(color);
+
+    &:hover,
+    :active {
+      @include aHover();
+    }
+  }
+
+  .active {
+    @include aHover();
+  }
+
+  .contact {
+    width: 150px;
+    font-size: 0.8rem;
+  }
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: $primary-bcg-color;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    max-width: 40%;
+    height: 500px;
+    padding: 20px;
+
+    h2 {
+      font-size: 2.2rem;
+      line-height: 50px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: $third-font-color;
+
+      span {
+        color: $secondary-font-color;
+      }
+    }
+
+    p {
+      color: $third-font-color;
+    }
+  }
+
+  img {
+    width: 50%;
+  }
+}
+
+.btns {
+  width: fit-content;
+  height: 100px;
+  display: flex;
+  gap: 12px;
+
+  * {
+    height: 50px;
+    border: 2px solid $third-font-color;
+    outline: none;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: $font-color;
+    font-weight: 600;
+    cursor: pointer;
+    @include trans();
+  }
+
+  .first-btn {
+    width: 100px;
+    background-color: $third-font-color;
+    @include btnHover($third-font-color);
+  }
+
+  .second-btn {
+    width: 140px;
+    background-color: $secondary-font-color;
+    @include btnHover($secondary-font-color);
+  }
+}
+
+@media (max-width: 900px) {
+  .header {
+    h1 {
+      font-size: 1.2rem;
+      span {
+        font-size: 1.2rem;
+      }
+    }
+
+    ul {
+      display: none;
+    }
+
+    button {
+      transition: 0.1s ease-in-out;
+    }
+
+    .toggle {
+      display: flex;
+    }
+
+    .contact {
+      flex: 2/3;
+    }
+  }
+
+  .container {
+    flex-flow: column-reverse;
+    gap: 40px;
+    padding-top: 20px;
+    padding-bottom: 40px;
+
+    .content {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+  }
+}
